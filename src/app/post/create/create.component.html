@@ -1,0 +1,48 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="w-50 h-50">
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input
+          formControlName="title"
+          id="title"
+          type="text"
+          class="form-control"
+        />
+        <div
+          *ngIf="f.title.touched && f.title.invalid"
+          class="alert-danger"
+        >
+          <div *ngIf="f.title.errors?.required">Title is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="body">Task</label>
+        <textarea
+          formControlName="body"
+          id="body"
+          type="text"
+          class="form-control"
+        >
+        </textarea>
+        <div
+          *ngIf="f.body.touched && f.body.invalid"
+          class="alert-danger"
+        >
+          <div *ngIf="f.body.errors?.required">Body is required.</div>
+        </div>
+      </div>
+      <div class="mt-3 w-100">
+        <button routerLink="/post/index" class="btn btn-danger mx-2" type="button">Back</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

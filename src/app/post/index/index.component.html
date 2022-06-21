@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="d-flex flex-row-reverse bd-highlight mb-2">
+    <div class="p-2 bd-highlight">
+      <input type="text" placeholder="Serach by id" />
+    </div>
+  </div>
+
+  <table class="table table-bordered border-primary mt-3">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Task</th>
+      <th width="220px">Action</th>
+    </tr>
+    <tr *ngFor="let post of posts |paginate : {
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count
+      }">
+      <td>{{ post.id }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.body }}</td>
+      <td>
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="btn btn-info" role="button" [routerLink]="['/post/', post.id, 'view']">View</a>
+          <a class="btn btn-primary" role="button" [routerLink]="['/post/', post.id, 'edit']">Edit</a>
+          <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls [responsive]="responsive" previousLabel="Prev" nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>
